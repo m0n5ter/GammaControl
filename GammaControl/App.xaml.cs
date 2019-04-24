@@ -17,16 +17,19 @@ namespace GammaControl
                 Text = "Gamma Control v.1.0.\nClick to show/hide",
                 Visible = true
             };
-
-            _icon.Click += (sender, args) =>
+            
+            _icon.MouseDown += (sender, args) =>
             {
-                if (MainWindow == null)
+                if (MainWindow == null || args.Button != MouseButtons.Left)
                     return;
 
                 if (MainWindow.IsVisible)
                     MainWindow.Hide();
                 else
+                {
                     MainWindow.Show();
+                    MainWindow.Activate();
+                }
             };
         }
     }
